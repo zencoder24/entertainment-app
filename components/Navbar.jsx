@@ -5,7 +5,6 @@ import Movies from '../public/assets/icon-nav-movies.svg';
 import Series from '../public/assets/icon-nav-tv-series.svg';
 import Bookmarks from '../public/assets/icon-nav-bookmark.svg';
 import Image from 'next/image';
-import avatar from '../public/assets/image-avatar.png';
 
 function Navbar() {
   return (
@@ -25,15 +24,11 @@ function Navbar() {
       <div>
         <Bookmarks />
       </div>
-      <div className="profile flex">
-        {/* This is not working */}
-        <img src={'/../public/assets/image-avatar.png'} />
-
-        {/* This is the only way I can render it on the page */}
+      <div className="profile flex h-14 w-14 relative">
         <Image
           src={'/../public/assets/image-avatar.png'}
-          width={35}
-          height={35}
+          layout="fill"
+          objectFit="cover"
         />
       </div>
     </nav>
