@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
+import SearchBar from '../components/SearchBar';
 import mediaItems from '../public/data.json'
 
 
@@ -23,13 +24,16 @@ export const getStaticProps = async () => {
 export default function Home({mediastuff}) {
   return (
     <div>
-      {/** These lines filter through the objects that are true and them maps them to jsx (html 
-       * elements) */}
-     {mediastuff.filter(media => media.isTrending === true)
-        .map(media => (
-          <h1>{media.title}</h1>
-        ))
-     }
+      <SearchBar/>
+      <div>
+        {/** These lines filter through the objects that are true and them maps them to jsx (html 
+         * elements) */}
+      {mediastuff.filter(media => media.isTrending === true)
+          .map(media => (
+            <h1 className=' text-x-white'>{media.title}</h1>
+          ))
+      }
+      </div>
     </div>
   );
 }
