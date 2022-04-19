@@ -24,7 +24,7 @@ export const getStaticProps = async () => {
 export default function Home({mediastuff}) {
   return (
     <div>
-      <SearchBar/>
+      <SearchBar placholderText={'Search for movies or TV series'}/>
       <div>
         {/** These lines filter through the objects that are true and them maps them to jsx (html 
          * elements) */}
