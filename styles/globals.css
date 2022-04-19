@@ -11,6 +11,8 @@ body {
   margin: 0;
   font-family: 'Outfit', sans-serif;
   font-weight: 300;
+  background-color: #10141e;
+  color: white;
 }
 
 a {
@@ -20,4 +22,15 @@ a {
 
 * {
   box-sizing: border-box;
+}
+
+/* Border around nav profile photo */
+.profile {
+  border: 0.1rem solid white;
+  border-radius: 100%;
+}
+
+.active {
+  filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(59deg)
+    brightness(200%) contrast(102%);
 }

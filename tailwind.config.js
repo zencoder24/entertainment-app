@@ -5,9 +5,9 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily:{
-        outfit: ['Outfit', 'sans-serif']
-      }
+      fontFamily: {
+        outfit: ['Outfit', 'sans-serif'],
+      },
     },
     colors: {
       // sunset orange
