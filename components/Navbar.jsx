@@ -13,13 +13,13 @@ function Navbar() {
           </a>
         </Link>
       </div>
-      <div className="tabs flex justify-evenly w-4/6 md:flex-col md:h-4/5 md:w-full md:justify-start">
+      <div className="tabs flex justify-evenly w-8/12 md:flex-col md:h-4/5 md:w-full md:justify-start">
         <Link href="/">
           <a className={router.pathname == '/' ? 'active' : ''}>
             <img
               src="/assets/icon-nav-home.svg"
               alt=""
-              className="w-6 md:w-4 md:m-auto md:mb-6"
+              className="w-5 md:w-4 md:m-auto md:mb-6"
             />
           </a>
         </Link>
@@ -28,7 +28,7 @@ function Navbar() {
             <img
               src="/assets/icon-nav-movies.svg"
               alt=""
-              className="w-6 md:w-4 md:m-auto md:mb-6"
+              className="w-5 md:w-4 md:m-auto md:mb-6"
             />
           </a>
         </Link>
@@ -37,7 +37,7 @@ function Navbar() {
             <img
               src="/assets/icon-nav-tv-series.svg"
               alt=""
-              className="w-6 md:w-4 md:m-auto md:mb-6"
+              className="w-5 md:w-4 md:m-auto md:mb-6"
             />
           </a>
         </Link>
@@ -46,7 +46,7 @@ function Navbar() {
             <img
               src="/assets/icon-nav-bookmark.svg"
               alt=""
-              className="w-6 md:w-4 md:m-auto md:mb-6"
+              className="w-5 md:w-4 md:m-auto md:mb-6"
             />
           </a>
         </Link>
@@ -55,7 +55,7 @@ function Navbar() {
         <img
           src="/assets/image-avatar.png"
           alt="profile avatar"
-          className="w-8 cursor-pointer"
+          className="w-7 md:w-10 cursor-pointer"
         />
       </div>
     </nav>
