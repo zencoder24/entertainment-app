@@ -13,13 +13,8 @@ import TrendingContainer from '../components/TrendingContainer';
 
 
 
+/**TODO: Need to add keys to the the json file. */
 
-/*Example Code */
-
-/** Each page will probably have this */
-
-//getStaticProps is a nextjs fuction that allows us to get the json infomation before the page is rendered.
-//A practical use case would be a database call
 export const getStaticProps = async () => {
   return {
     props: {
