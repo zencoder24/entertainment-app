@@ -24,7 +24,7 @@ export default function Home({mediastuff}) {
   return (
     <div>
       <SearchBar placholderText={'Search for movies or TV series'} />
-      <MediaContainer>
+      <MediaContainer title={'Recommended for you'}>
         {/** These lines filter through the objects that are true and them maps them to jsx (html
          * elements) */}
         {mediastuff
