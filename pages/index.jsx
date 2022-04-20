@@ -2,7 +2,9 @@ import Head from 'next/head';
 import Image from 'next/image';
 import Navbar from '../components/Navbar';
 import SearchBar from '../components/SearchBar';
+import TrendingMediaItems from '../components/TrendingMediaItems';
 import mediaItems from '../public/data.json'
+
 
 
 
@@ -23,17 +25,25 @@ export const getStaticProps = async () => {
 
 export default function Home({mediastuff}) {
   return (
-    <div>
+    <>
       <SearchBar placholderText={'Search for movies or TV series'}/>
-      <div>
-        {/** These lines filter through the objects that are true and them maps them to jsx (html 
-         * elements) */}
-      {mediastuff.filter(media => media.isTrending === true)
-          .map(media => (
-            <h1 className=' text-x-white'>{media.title}</h1>
-          ))
-      }
+      {/** Recommended for you */}
+      <div className='flex overflow-x-auto no-scrollbar flex-row '>
+        {mediastuff
+        .filter((media) => media.isTrending === true)
+        .map((media) => (
+          <TrendingMediaItems
+          year={media.year}
+          category={media.category}
+          rating={media.rating}
+          title={media.title}
+          small={media.thumbnail.trending.small}
+          large={media.thumbnail.trending.large}
+          />
+        ))}
       </div>
-    </div>
+
+
+    </>
   );
 }
