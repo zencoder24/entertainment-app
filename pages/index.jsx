@@ -28,7 +28,7 @@ export default function Home({mediastuff}) {
         {/** These lines filter through the objects that are true and them maps them to jsx (html
          * elements) */}
         {mediastuff
-          .filter((media) => media.isTrending === true)
+          .filter((media) => media.isTrending === false)
           .map((media) => (
             <MediaCards
               small={media.thumbnail.regular.small}
