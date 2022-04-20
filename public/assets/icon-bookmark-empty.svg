@@ -1,1 +1,10 @@
+<<<<<<< HEAD
 <svg viewBox="0 0 20 10" xmlns="http://www.w3.org/2000/svg"><path d="m10.518.75.399 12.214-5.084-4.24-4.535 4.426L.75 1.036l9.768-.285Z" stroke="#FFF" stroke-width="1.5" fill="none"/></svg>
+=======
+<svg width="12" height="15" xmlns="http://www.w3.org/2000/svg">
+ <g>
+  <title>Layer 1</title>
+  <path transform="rotate(2.51859 6.06265 7.11436)" stroke="#ffffff" fill-opacity="0" d="m10.91255,1.57703l0.51109,11.42849l-5.18969,-4.42265l-4.9706,4.94437l-0.56169,-12.42531l10.17249,-0.40045l0.0384,0.87555z" stroke-width="1.5" fill="#0fffff" id="svg_1"/>
+ </g>
+</svg>
+>>>>>>> trending-component

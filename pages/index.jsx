@@ -5,6 +5,11 @@ import SearchBar from '../components/SearchBar';
 import mediaItems from '../public/data.json';
 import MediaCards from '../components/MediaCards';
 import MediaContainer from '../components/MediaContainer';
+import TrendingMediaItems from '../components/TrendingMediaItems';
+import mediaItems from '../public/data.json'
+
+
+
 
 /*Example Code */
 
@@ -42,5 +47,25 @@ export default function Home({mediastuff}) {
           ))}
       </MediaContainer>
     </div>
+    <>
+      <SearchBar placholderText={'Search for movies or TV series'}/>
+      {/** Recommended for you */}
+      <div className='flex overflow-x-auto no-scrollbar flex-row '>
+        {mediastuff
+        .filter((media) => media.isTrending === true)
+        .map((media) => (
+          <TrendingMediaItems
+          year={media.year}
+          category={media.category}
+          rating={media.rating}
+          title={media.title}
+          small={media.thumbnail.trending.small}
+          large={media.thumbnail.trending.large}
+          />
+        ))}
+      </div>
+
+
+    </>
   );
 }
