@@ -10,6 +10,7 @@ import MediaContainer from '../components/MediaContainer';
 
 import TrendingCards from '../components/TrendingCards';
 import TrendingContainer from '../components/TrendingContainer';
+import { useState } from 'react';
 
 
 
@@ -24,13 +25,17 @@ export const getStaticProps = async () => {
 };
 
 export default function Home({mediastuff}) {
+  
+  const[searchVal, setSearchVal] = useState("")
+
+
   return (
     <>
 
-      <SearchBar placholderText={'Search for movies or TV series'}/>
+      <SearchBar searchVal={searchVal} setSearchVal={setSearchVal} placholderText={'Search for movies or TV series'}/>
 
         {/** Trending Component */}
-        <TrendingContainer title={'Trending'}>
+        <TrendingContainer searchVal={searchVal}  title={'Trending'}>
           {mediastuff
           .filter((media) => media.isTrending === true)
           .map((media) => (
@@ -46,7 +51,7 @@ export default function Home({mediastuff}) {
        </TrendingContainer>
 
         {/** Trending Component */}
-        <MediaContainer title={'Recommended for you'}>
+        <MediaContainer searchVal={searchVal} title={'Recommended for you'}>
           {mediastuff
             .filter((media) => media.isTrending === false)
             .map((media) => (

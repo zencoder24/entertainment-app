@@ -1,8 +1,8 @@
 import React from 'react';
 
-export default function MediaContainer({children, title}) {
+export default function MediaContainer({children, title, searchVal}) {
   return (
-    <div>
+    <div className={searchVal.length == 0? 'block': 'hidden'}>
       <div className="title px-4 py-6 text-2xl font-thin md:py-8 lg:py-10 xl:py-12 md:text-3xl lg:text-5xl">
         {title}
       </div>
