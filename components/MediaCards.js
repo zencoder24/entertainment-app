@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 
 export default function MediaCards({
   small,
@@ -9,21 +9,26 @@ export default function MediaCards({
   rating,
   title,
 }) {
-
-  const [isBookmarked, setIsBookmarked] = useState(false)
+  const [isBookmarked, setIsBookmarked] = useState(false);
   return (
     <div className="card">
       <div className="img">
         <div className="bookmark relative flex justify-end">
-          <div className="bg-x-mirage z-10 absolute w-6 h-6 flex justify-center items-center rounded-full mt-1 mr-1 opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3">
+          <div
+            className="bg-x-mirage z-10 absolute w-6 h-6 flex justify-center items-center rounded-full mt-1 mr-1 opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3"
+            onClick={(e) => setIsBookmarked(!isBookmarked)}
+          >
             <img
-              onClick={(e) => setIsBookmarked(!isBookmarked)}
-              src={ isBookmarked? "/assets/icon-bookmark-full.svg" : "/assets/icon-bookmark-empty-new.svg"}
+              src={
+                isBookmarked
+                  ? '/assets/icon-bookmark-full.svg'
+                  : '/assets/icon-bookmark-empty-new.svg'
+              }
               alt=""
               className="w-2 m-auto md:w-3"
             />
           </div>
-          <img src={small} alt="" className="block md:hidden rounded-lg" />
+          <img src={small} alt="" className="block md:hidden rounded-lg " />
           <img
             src={medium}
             alt=""
