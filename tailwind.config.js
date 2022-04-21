@@ -24,6 +24,7 @@ module.exports = {
 
       // white
       'x-white': '#FFFFFF',
+      'x-white-bk': '#FFFFFF',
     },
   },
   plugins: [],

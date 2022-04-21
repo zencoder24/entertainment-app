@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 /* Importing Outfit Font 300 and 500 weights */
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@300;500&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;500&display=swap');
 
 /*Hide scrollbar on trending coponent*/
 @layer utilities {
@@ -22,7 +22,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  font-family: "Outfit", sans-serif;
+  font-family: 'Outfit', sans-serif;
   font-weight: 300;
   background-color: #10141e;
   color: white;
@@ -47,4 +47,18 @@ a {
 .active {
   filter: invert(100%) sepia(100%) saturate(0%) hue-rotate(59deg)
     brightness(200%) contrast(102%);
+}
+
+.hover-bookmark {
+  filter: brightness(0%);
+}
+
+.hover-img {
+  filter: brightness(40%);
+}
+
+.play-icon {
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }

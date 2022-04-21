@@ -1,6 +1,8 @@
 import React, {useState} from 'react';
 const TrendingCards = ({year, category, rating, title, small, large}) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [bookmarkHover, setBookmarkHover] = useState();
+  const [bookmarkIconHover, setBookmarkIconHover] = useState();
 
   return (
     <div className="relative ml-5 rounded-lg">
@@ -31,8 +33,20 @@ const TrendingCards = ({year, category, rating, title, small, large}) => {
           </div>
         </div>
         <div
-          className="bg-x-mirage w-6 h-6 flex justify-center items-center rounded-full mr-4 my-2 mx-auto opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3"
+          className={`bg-x-mirage w-6 h-6 flex justify-center items-center rounded-full mr-4 my-2 mx-auto opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3 ${bookmarkHover}`}
           onClick={(e) => setIsBookmarked(!isBookmarked)}
+          onMouseEnter={() => {
+            window.innerWidth > 768
+              ? setBookmarkHover('bg-x-white opacity-100')
+              : '';
+            window.innerWidth > 768
+              ? setBookmarkIconHover('hover-bookmark')
+              : '';
+          }}
+          onMouseLeave={() => {
+            setBookmarkHover('');
+            setBookmarkIconHover('');
+          }}
         >
           <img
             src={
@@ -41,7 +55,7 @@ const TrendingCards = ({year, category, rating, title, small, large}) => {
                 : '/assets/icon-bookmark-empty-new.svg'
             }
             alt=""
-            className="w-2 m-auto md:w-3"
+            className={`w-2 m-auto md:w-3 ${bookmarkIconHover}`}
           />
         </div>
       </div>

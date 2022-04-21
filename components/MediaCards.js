@@ -10,13 +10,48 @@ export default function MediaCards({
   title,
 }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
+  const [bookmarkHover, setBookmarkHover] = useState();
+  const [bookmarkIconHover, setBookmarkIconHover] = useState();
+  const [playHover, setPlayHover] = useState(false);
+  const [imgHover, setImgHover] = useState('');
+
   return (
     <div className="card">
       <div className="img">
-        <div className="bookmark relative flex justify-end">
+        <div
+          className="bookmark relative flex justify-end cursor-pointer"
+          onMouseEnter={() => {
+            setPlayHover(true);
+            setImgHover('hover-img');
+          }}
+          onMouseLeave={() => {
+            setPlayHover(false);
+            setImgHover('');
+          }}
+        >
+          {/* xx */}
+          {playHover && (
+            <div className="hidden md:flex div play-icon absolute bg-x-white bg-opacity-25 px-4 py-2 rounded-full justify-center items-center z-10">
+              <img src="/assets/icon-play.svg" alt="" className="w-7 mr-2" />
+              <p className="text-lg font-light ml-1">Play</p>
+            </div>
+          )}
+          {/* xx */}
           <div
-            className="bg-x-mirage z-10 absolute w-6 h-6 flex justify-center items-center rounded-full mt-1 mr-1 opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3"
+            className={`bg-x-mirage z-10 absolute w-6 h-6 flex justify-center items-center rounded-full mt-1 mr-1 opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3 ${bookmarkHover}`}
             onClick={(e) => setIsBookmarked(!isBookmarked)}
+            onMouseEnter={() => {
+              window.innerWidth > 768
+                ? setBookmarkHover('bg-x-white-bk opacity-100 z-2')
+                : '';
+              window.innerWidth > 768
+                ? setBookmarkIconHover('hover-bookmark z-2')
+                : '';
+            }}
+            onMouseLeave={() => {
+              setBookmarkHover('');
+              setBookmarkIconHover('');
+            }}
           >
             <img
               src={
@@ -25,16 +60,20 @@ export default function MediaCards({
                   : '/assets/icon-bookmark-empty-new.svg'
               }
               alt=""
-              className="w-2 m-auto md:w-3"
+              className={`w-2 m-auto md:w-3 ${bookmarkIconHover}`}
             />
           </div>
-          <img src={small} alt="" className="block md:hidden rounded-lg " />
+          <img src={small} alt="" className={`block md:hidden rounded-lg`} />
           <img
             src={medium}
             alt=""
-            className="hidden md:block lg:hidden rounded-lg"
+            className={`hidden md:block lg:hidden rounded-lg ${imgHover}`}
           />
-          <img src={large} alt="" className="hidden lg:block rounded-lg" />
+          <img
+            src={large}
+            alt=""
+            className={`hidden lg:block rounded-lg ${imgHover}`}
+          />
         </div>
       </div>
       <div className="txt flex flex-wrap text-xs font-thin text-x-white opacity-75 pt-1 md:text-sm">
