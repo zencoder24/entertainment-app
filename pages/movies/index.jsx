@@ -1,13 +1,45 @@
 import React from 'react';
 import SearchBar from '../../components/SearchBar';
+import {useState} from 'react';
+import MediaContainer from '../../components/MediaContainer';
+import MediaCards from '../../components/MediaCards';
+import mediaItems from '../public/data.json';
 
-const MoviesPage = () => {
-    return (
-        <div>
-            <SearchBar placholderText={'Search for movies'}/>
-            <h1>Movies Page</h1>
-        </div>
-    );
+export const getStaticProps = async () => {
+  return {
+    props: {
+      mediastuff: mediaItems,
+    },
+  };
+};
+
+const MoviesPage = ({mediastuff}) => {
+  const [searchVal, setSearchVal] = useState('');
+  return (
+    <div>
+      <SearchBar
+        searchVal={searchVal}
+        setSearchVal={setSearchVal}
+        placholderText={'Search for movies'}
+      />
+
+      <MediaContainer searchVal={searchVal} title={'Movies'}>
+        {mediastuff
+          .filter((media) => media.category === 'Movie')
+          .map((media) => (
+            <MediaCards
+              small={media.thumbnail.regular.small}
+              medium={media.thumbnail.regular.medium}
+              large={media.thumbnail.regular.large}
+              year={media.year}
+              category={media.category}
+              rating={media.rating}
+              title={media.title}
+            />
+          ))}
+      </MediaContainer>
+    </div>
+  );
 };
 
 export default MoviesPage;
