@@ -3,7 +3,7 @@ import SearchBar from '../../components/SearchBar';
 import {useState} from 'react';
 import MediaContainer from '../../components/MediaContainer';
 import MediaCards from '../../components/MediaCards';
-import mediaItems from '../public/data.json';
+import mediaItems from '../../public/data.json';
 
 export const getStaticProps = async () => {
   return {
