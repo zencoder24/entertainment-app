@@ -29,17 +29,18 @@ export default function MediaCards({
             setImgHover('');
           }}
         >
-          {/* xx */}
+          {/* If playHover is true, display these elements */}
           {playHover && (
             <div className="hidden md:flex div play-icon absolute bg-x-white bg-opacity-25 px-4 py-2 rounded-full justify-center items-center z-10">
               <img src="/assets/icon-play.svg" alt="" className="w-7 mr-2" />
               <p className="text-lg font-light ml-1">Play</p>
             </div>
           )}
-          {/* xx */}
+          {/* end of playHover */}
           <div
             className={`bg-x-mirage z-10 absolute w-6 h-6 flex justify-center items-center rounded-full mt-1 mr-1 opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3 ${bookmarkHover}`}
             onClick={(e) => setIsBookmarked(!isBookmarked)}
+            // On mouse enter, if screen is bigger than md, add these classes
             onMouseEnter={() => {
               window.innerWidth > 768
                 ? setBookmarkHover('bg-x-white-bk opacity-100 z-2')
@@ -48,6 +49,7 @@ export default function MediaCards({
                 ? setBookmarkIconHover('hover-bookmark z-2')
                 : '';
             }}
+            //remove classes on mouse leave
             onMouseLeave={() => {
               setBookmarkHover('');
               setBookmarkIconHover('');
