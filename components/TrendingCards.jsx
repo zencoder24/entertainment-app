@@ -1,15 +1,7 @@
-import React from 'react';
-
-/*TODO: Figure out how use  large background image on md screen sizes. 
-
- -using the tailwind "bg-[url('/img/hero-pattern.svg')]" class doesnt work because the paths from the json call cant be called inside of the 
-  global.css file which is where tailwind gets the file from
-
- -using the style attribute works but the element in which it is called has all of the other elements nested in it. adding a 'hidden' class to the 
-  className would hide everything.
- 
- */
+import React, { useState } from 'react';
 const TrendingCards = ({year, category, rating, title, small, large}) => {
+  const [isBookmarked, setIsBookmarked] = useState(false)
+
     return (
       <div className='relative ml-5 rounded-lg'>
         <img className='absolute rounded-lg md:hidden' src={small} alt="" />
@@ -36,9 +28,10 @@ const TrendingCards = ({year, category, rating, title, small, large}) => {
                </div>
                <div className="bg-x-mirage w-6 h-6 flex justify-center items-center rounded-full mr-4 my-2 mx-auto opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3">
                 <img
-                  src="/assets/icon-bookmark-empty-new.svg"
+                  onClick={(e) => setIsBookmarked(!isBookmarked)}
+                  src={ isBookmarked? "/assets/icon-bookmark-full.svg" : "/assets/icon-bookmark-empty-new.svg"}
                   alt=""
-                  className="w-2 m-auto  md:w-3"
+                  className="w-2 m-auto md:w-3"
                 />
               </div>
              </div>
