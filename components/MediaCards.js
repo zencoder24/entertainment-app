@@ -23,7 +23,7 @@ export default function MediaCards({
               className="w-2 m-auto md:w-3"
             />
           </div>
-          <img src={small} alt="" className="block md:hidden rounded-lg" />
+          <img src={small} alt="" className="block md:hidden rounded-lg " />
           <img
             src={medium}
             alt=""
