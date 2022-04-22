@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
-const TrendingCards = ({year, category, rating, title, small, large}) => {
+const TrendingCards = ({year, category, rating, title, small, large, mediaBookmarked, id }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [bookmarkHover, setBookmarkHover] = useState();
   const [bookmarkIconHover, setBookmarkIconHover] = useState();
+
 
   return (
     <div className="relative ml-5 rounded-lg">
@@ -34,7 +35,7 @@ const TrendingCards = ({year, category, rating, title, small, large}) => {
         </div>
         <div
           className={`bg-x-mirage w-6 h-6 flex justify-center items-center rounded-full mr-4 my-2 mx-auto opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3 ${bookmarkHover}`}
-          onClick={(e) => setIsBookmarked(!isBookmarked)}
+          onClick={(e) => setIsBookmarked(!isBookmarked)} //TODO: Change value on database from here
           onMouseEnter={() => {
             window.innerWidth > 768
               ? setBookmarkHover('bg-x-white opacity-100')
@@ -50,7 +51,7 @@ const TrendingCards = ({year, category, rating, title, small, large}) => {
         >
           <img
             src={
-              isBookmarked
+              mediaBookmarked
                 ? '/assets/icon-bookmark-full.svg'
                 : '/assets/icon-bookmark-empty-new.svg'
             }
