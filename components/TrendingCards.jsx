@@ -3,12 +3,33 @@ const TrendingCards = ({year, category, rating, title, small, large}) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [bookmarkHover, setBookmarkHover] = useState();
   const [bookmarkIconHover, setBookmarkIconHover] = useState();
+  const [playHover, setPlayHover] = useState(false);
+  const [imgHover, setImgHover] = useState('');
 
   return (
-    <div className="relative ml-5 rounded-lg">
+    <div
+      className="relative ml-5 rounded-lg cursor-pointer"
+      onMouseEnter={() => {
+        setPlayHover(true);
+        //'hover-img' is declared in global
+        setImgHover('hover-img');
+      }}
+      onMouseLeave={() => {
+        setPlayHover(false);
+        setImgHover('');
+      }}
+    >
+      {/* If playHover is true, display these elements, boolean set in element above */}
+      {playHover && (
+        <div className="hidden md:flex div play-icon-trending absolute bg-x-white bg-opacity-25 px-4 py-2 rounded-full justify-center items-center z-10">
+          <img src="/assets/icon-play.svg" alt="" className="w-7 mr-2" />
+          <p className="text-lg font-light ml-1">Play</p>
+        </div>
+      )}
+      {/* end of playHover */}
       <img className="absolute rounded-lg md:hidden" src={small} alt="" />
       <img
-        className=" hidden md:block md:absolute rounded-lg"
+        className={`hidden md:block md:absolute rounded-lg ${imgHover}`}
         src={large}
         alt=""
       />
@@ -33,11 +54,11 @@ const TrendingCards = ({year, category, rating, title, small, large}) => {
           </div>
         </div>
         <div
-          className={`bg-x-mirage w-6 h-6 flex justify-center items-center rounded-full mr-4 my-2 mx-auto opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3 ${bookmarkHover}`}
+          className={`bg-x-mirage w-6 h-6 flex justify-self-end rounded-full mr-4 my-2 mx-auto opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3 absolute ${bookmarkHover}`}
           onClick={(e) => setIsBookmarked(!isBookmarked)}
           onMouseEnter={() => {
             window.innerWidth > 768
-              ? setBookmarkHover('bg-x-white opacity-100')
+              ? setBookmarkHover('bg-x-white-bk opacity-100')
               : '';
             window.innerWidth > 768
               ? setBookmarkIconHover('hover-bookmark')
