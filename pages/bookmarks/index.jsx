@@ -39,6 +39,8 @@ export async function getServerSideProps(context){
               .filter((item) => item.category === "Movie" && item.isBookmarked === true)
               .map((item) => (
                 <MediaCards
+                  key={item._id}
+                  id={item._id}
                   small={item.thumbnail.regular.small}
                   medium={item.thumbnail.regular.medium}
                   large={item.thumbnail.regular.large}
