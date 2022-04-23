@@ -23,9 +23,6 @@ const SearchBar = ({placholderText, onChange, setSearchVal, searchVal}) => {
         {' '}
         Found Results for: '{searchVal}'
       </h1>
-
-
-
     </div>
   );
 };

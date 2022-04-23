@@ -35,7 +35,7 @@ export async function getServerSideProps(context){
           {/** Trending Component */}
           <MediaContainer searchVal={searchVal} title={'TV Series'}>
             {media
-              .filter((item) => item.category === "TV Series")
+              .filter((item) => item.category === "TV Series" && item.title.toLowerCase().includes(searchVal.toLowerCase()))
               .map((item) => (
                 <MediaCards
                   key={item._id}

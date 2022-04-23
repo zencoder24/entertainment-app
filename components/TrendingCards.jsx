@@ -75,7 +75,7 @@ const TrendingCards = ({year, category, rating, title, small, large, mediaBookma
         </div>
         <div
           className={`bg-x-mirage w-6 h-6 flex justify-center items-center rounded-full mr-4 my-2 mx-auto opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3 ${bookmarkHover}`}
-          onClick={(e) => bookmarkToggle(id)} //TODO: Change value on database from here
+          onClick={(e) => bookmarkToggle(id)} 
           onMouseEnter={() => {
             window.innerWidth > 768
               ? setBookmarkHover('bg-x-white-bk opacity-100')

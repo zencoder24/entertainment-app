@@ -65,8 +65,7 @@ export default function MediaCards({
           {/* end of playHover */}
           <div
             className={`bg-x-mirage z-10 absolute w-6 h-6 flex justify-center items-center rounded-full mt-1 mr-1 opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3 ${bookmarkHover}`}
-            onClick={(e) => bookmarkToggle(id)} //TODO: Change value on database from here
-            // On mouse enter, if screen is bigger than md, add these classes to the BookmarkIconHover state
+            onClick={(e) => bookmarkToggle(id)} 
             onMouseEnter={() => {
               window.innerWidth > 768
                 ? // Bookmark BG

@@ -34,7 +34,7 @@ const MoviesPage = ({media}) => {
 
       <MediaContainer searchVal={searchVal} title={'Movies'}>
         {media
-          .filter((item) => item.category === 'Movie')
+          .filter((item) => item.category === 'Movie'&& item.title.toLowerCase().includes(searchVal.toLowerCase()))
           .map((item) => (
             <MediaCards
               key={item._id}

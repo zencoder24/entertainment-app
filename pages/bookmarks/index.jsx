@@ -36,7 +36,7 @@ export async function getServerSideProps(context){
         
           <MediaContainer searchVal={searchVal} title={'Bookmarked Movies'}>
             {media
-              .filter((item) => item.category === "Movie" && item.isBookmarked === true)
+              .filter((item) => item.category === "Movie" && item.isBookmarked === true && item.title.toLowerCase().includes(searchVal.toLowerCase()))
               .map((item) => (
                 <MediaCards
                   key={item._id}
@@ -55,7 +55,7 @@ export async function getServerSideProps(context){
 
           <MediaContainer searchVal={searchVal} title={'Bookmarked TV Series'}>
             {media
-              .filter((item) => item.category === "TV Series" && item.isBookmarked === true)
+              .filter((item) => item.category === "TV Series" && item.isBookmarked === true && item.title.toLowerCase().includes(searchVal.toLowerCase()))
               .map((item) => (
                 <MediaCards
                   key={item._id}
