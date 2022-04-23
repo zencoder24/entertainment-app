@@ -79,13 +79,8 @@ const TrendingCards = ({
           </div>
         </div>
         <div
-<<<<<<< HEAD
-          className={`bg-x-mirage w-6 h-6 flex justify-center items-center rounded-full mr-4 my-2 mx-auto opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3 ${bookmarkHover}`}
-          onClick={(e) => bookmarkToggle(id)} 
-=======
           className={`bg-x-mirage w-6 h-6 flex justify-self-end rounded-full mr-4 my-2 mx-auto opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3 absolute ${bookmarkHover}`}
           onClick={(e) => bookmarkToggle(id)} //TODO: Change value on database from here
->>>>>>> cb3ae87 (Put fix on bookmark icon hover on TrendingCard)
           onMouseEnter={() => {
             window.innerWidth > 768
               ? setBookmarkHover('bg-x-white-bk opacity-100')
