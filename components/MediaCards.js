@@ -1,4 +1,6 @@
 import React, {useState} from 'react';
+import { server } from '../config';
+import {useRouter} from 'next/router'
 
 export default function MediaCards({
   small,
@@ -8,6 +10,8 @@ export default function MediaCards({
   category,
   rating,
   title,
+  mediaBookmarked,
+  id
 }) {
   const [isBookmarked, setIsBookmarked] = useState(false);
 
@@ -16,6 +20,21 @@ export default function MediaCards({
   const [bookmarkIconHover, setBookmarkIconHover] = useState();
   const [playHover, setPlayHover] = useState(false);
   const [imgHover, setImgHover] = useState('');
+  const router = useRouter();
+
+  const bookmarkToggle = async (id) =>{
+    try{
+      await fetch(`${server}/api/media`, {
+        method:'PUT',
+        body: id
+      });
+      return router.push(router.asPath)
+    } catch (error){
+      console.log(error)
+    }
+  }
+
+  
 
   return (
     <div className="card">
@@ -43,7 +62,7 @@ export default function MediaCards({
           {/* end of playHover */}
           <div
             className={`bg-x-mirage z-10 absolute w-6 h-6 flex justify-center items-center rounded-full mt-1 mr-1 opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3 ${bookmarkHover}`}
-            onClick={(e) => setIsBookmarked(!isBookmarked)}
+            onClick={(e) => bookmarkToggle(id)} //TODO: Change value on database from here
             // On mouse enter, if screen is bigger than md, add these classes to the BookmarkIconHover state
             onMouseEnter={() => {
               window.innerWidth > 768
@@ -63,7 +82,7 @@ export default function MediaCards({
           >
             <img
               src={
-                isBookmarked
+                mediaBookmarked
                   ? '/assets/icon-bookmark-full.svg'
                   : '/assets/icon-bookmark-empty-new.svg'
               }

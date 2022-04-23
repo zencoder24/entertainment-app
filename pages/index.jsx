@@ -6,21 +6,33 @@ import TrendingCards from '../components/TrendingCards';
 import TrendingContainer from '../components/TrendingContainer';
 import {useState} from 'react';
 
-/**TODO: Need to add keys to the the json file. */
 
-export const getStaticProps = async () => {
+
+
+export async function getServerSideProps(context){
+  // get the current environment
+  let dev = process.env.NODE_ENV !== 'production';
+  // let { DEV_URL, PROD_URL } = process.env;
+
+  // request posts from api
+  let response = await fetch(`${dev ?'http://localhost:3000' : 'https://your_deployment.server.com'}/api/media`);
+  // extract the data
+  let data = await response.json();
+
   return {
-    props: {
-      mediastuff: mediaItems,
-    },
+      props: {
+          media: data['message'],
+      },
   };
-};
+}
 
-export default function Home({mediastuff}) {
+
+export default function Home( {media}) {
   const [searchVal, setSearchVal] = useState('');
 
   return (
     <>
+    
       <SearchBar
         searchVal={searchVal}
         setSearchVal={setSearchVal}
@@ -29,33 +41,39 @@ export default function Home({mediastuff}) {
 
       {/** Trending Component */}
       <TrendingContainer searchVal={searchVal} title={'Trending'}>
-        {mediastuff
-          .filter((media) => media.isTrending === true)
-          .map((media) => (
+        {media
+          .filter((item) => item.isTrending === true)
+          .map((item) => (
             <TrendingCards
-              year={media.year}
-              category={media.category}
-              rating={media.rating}
-              title={media.title}
-              small={media.thumbnail.trending.small}
-              large={media.thumbnail.trending.large}
+              key={item._id}
+              id={item._id}
+              mediaBookmarked={item.isBookmarked}
+              year={item.year}
+              category={item.category}
+              rating={item.rating}
+              title={item.title}
+              small={item.thumbnail.trending.small}
+              large={item.thumbnail.trending.large}
             />
           ))}
       </TrendingContainer>
 
       {/** Trending Component */}
       <MediaContainer searchVal={searchVal} title={'Recommended for you'}>
-        {mediastuff
-          .filter((media) => media.isTrending === false)
-          .map((media) => (
+        {media
+          .filter((item) => item.isTrending === false)
+          .map((item) => (
             <MediaCards
-              small={media.thumbnail.regular.small}
-              medium={media.thumbnail.regular.medium}
-              large={media.thumbnail.regular.large}
-              year={media.year}
-              category={media.category}
-              rating={media.rating}
-              title={media.title}
+              key={item._id}
+              id={item._id}
+              mediaBookmarked={item.isBookmarked}
+              small={item.thumbnail.regular.small}
+              medium={item.thumbnail.regular.medium}
+              large={item.thumbnail.regular.large}
+              year={item.year}
+              category={item.category}
+              rating={item.rating}
+              title={item.title}
             />
           ))}
       </MediaContainer>

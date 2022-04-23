@@ -2,6 +2,7 @@ import React from 'react';
 import Navbar from './Navbar';
 import Head from 'next/head';
 
+
 const Layout = ({children}) => {
   return (
     <div className="bg-x-vulcan h-full menu-spacing md:ml-24 md:mt-3">

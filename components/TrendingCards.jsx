@@ -1,10 +1,30 @@
 import React, {useState} from 'react';
-const TrendingCards = ({year, category, rating, title, small, large}) => {
+import { server } from '../config';
+import {useRouter} from 'next/router'
+
+
+
+
+const TrendingCards = ({year, category, rating, title, small, large, mediaBookmarked, id }) => {
   const [isBookmarked, setIsBookmarked] = useState(false);
   const [bookmarkHover, setBookmarkHover] = useState();
   const [bookmarkIconHover, setBookmarkIconHover] = useState();
   const [playHover, setPlayHover] = useState(false);
   const [imgHover, setImgHover] = useState('');
+  const router = useRouter();
+
+  const bookmarkToggle = async (id) =>{
+    try{
+      await fetch(`${server}/api/media`, {
+        method:'PUT',
+        body: id
+      });
+      return router.push(router.asPath)
+    } catch (error){
+      console.log(error)
+    }
+  }
+
 
   return (
     <div
@@ -54,8 +74,8 @@ const TrendingCards = ({year, category, rating, title, small, large}) => {
           </div>
         </div>
         <div
-          className={`bg-x-mirage w-6 h-6 flex justify-self-end rounded-full mr-4 my-2 mx-auto opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3 absolute ${bookmarkHover}`}
-          onClick={(e) => setIsBookmarked(!isBookmarked)}
+          className={`bg-x-mirage w-6 h-6 flex justify-center items-center rounded-full mr-4 my-2 mx-auto opacity-70 md:w-10 md:h-10 md:mt-3 md:mr-3 ${bookmarkHover}`}
+          onClick={(e) => bookmarkToggle(id)} //TODO: Change value on database from here
           onMouseEnter={() => {
             window.innerWidth > 768
               ? setBookmarkHover('bg-x-white-bk opacity-100')
@@ -71,7 +91,7 @@ const TrendingCards = ({year, category, rating, title, small, large}) => {
         >
           <img
             src={
-              isBookmarked
+              mediaBookmarked
                 ? '/assets/icon-bookmark-full.svg'
                 : '/assets/icon-bookmark-empty-new.svg'
             }

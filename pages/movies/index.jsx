@@ -5,15 +5,24 @@ import MediaContainer from '../../components/MediaContainer';
 import MediaCards from '../../components/MediaCards';
 import mediaItems from '../../public/data.json';
 
-export const getStaticProps = async () => {
-  return {
-    props: {
-      mediastuff: mediaItems,
-    },
-  };
-};
+export async function getServerSideProps(context){
+  // get the current environment
+  let dev = process.env.NODE_ENV !== 'production';
+  // let { DEV_URL, PROD_URL } = process.env;
 
-const MoviesPage = ({mediastuff}) => {
+  // request posts from api
+  let response = await fetch(`${dev ?'http://localhost:3000' : 'https://your_deployment.server.com'}/api/media`);
+  // extract the data
+  let data = await response.json();
+
+  return {
+      props: {
+          media: data['message'],
+      },
+  };
+}
+
+const MoviesPage = ({media}) => {
   const [searchVal, setSearchVal] = useState('');
   return (
     <div>
@@ -24,17 +33,20 @@ const MoviesPage = ({mediastuff}) => {
       />
 
       <MediaContainer searchVal={searchVal} title={'Movies'}>
-        {mediastuff
-          .filter((media) => media.category === 'Movie')
-          .map((media) => (
+        {media
+          .filter((item) => item.category === 'Movie')
+          .map((item) => (
             <MediaCards
-              small={media.thumbnail.regular.small}
-              medium={media.thumbnail.regular.medium}
-              large={media.thumbnail.regular.large}
-              year={media.year}
-              category={media.category}
-              rating={media.rating}
-              title={media.title}
+              key={item._id}
+              id={item._id}
+              mediaBookmarked={item.isBookmarked}
+              small={item.thumbnail.regular.small}
+              medium={item.thumbnail.regular.medium}
+              large={item.thumbnail.regular.large}
+              year={item.year}
+              category={item.category}
+              rating={item.rating}
+              title={item.title}
             />
           ))}
       </MediaContainer>
