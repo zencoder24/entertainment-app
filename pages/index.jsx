@@ -6,33 +6,32 @@ import TrendingCards from '../components/TrendingCards';
 import TrendingContainer from '../components/TrendingContainer';
 import {useState} from 'react';
 
-
-
-
-export async function getServerSideProps(context){
+export async function getServerSideProps(context) {
   // get the current environment
   let dev = process.env.NODE_ENV !== 'production';
   // let { DEV_URL, PROD_URL } = process.env;
 
   // request posts from api
-  let response = await fetch(`${dev ?'http://localhost:3000' : 'https://your_deployment.server.com'}/api/media`);
+  let response = await fetch(
+    `${
+      dev ? 'http://localhost:3000' : 'https://your_deployment.server.com'
+    }/api/media`
+  );
   // extract the data
   let data = await response.json();
 
   return {
-      props: {
-          media: data['message'],
-      },
+    props: {
+      media: data['message'],
+    },
   };
 }
 
-
-export default function Home( {media}) {
+export default function Home({media}) {
   const [searchVal, setSearchVal] = useState('');
 
   return (
     <>
-    
       <SearchBar
         searchVal={searchVal}
         setSearchVal={setSearchVal}
