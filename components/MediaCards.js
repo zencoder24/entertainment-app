@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { server } from '../config';
 import {useRouter} from 'next/router'
 
@@ -13,7 +13,7 @@ export default function MediaCards({
   mediaBookmarked,
   id
 }) {
-  const [isBookmarked, setIsBookmarked] = useState(false);
+  const [isBookmarked, setIsBookmarked] = useState(mediaBookmarked);
 
   //Hover states, these will be passed as class variables or as booleans (to display elements):
   const [bookmarkHover, setBookmarkHover] = useState();
@@ -27,12 +27,15 @@ export default function MediaCards({
       await fetch(`${server}/api/media`, {
         method:'PUT',
         body: id
-      });
-      return router.push(router.asPath)
+      })
+      .then(response => response.json())
+      .then(data => setIsBookmarked(data.doc.value.isBookmarked))
+    
     } catch (error){
       console.log(error)
     }
   }
+
 
   
 
@@ -82,9 +85,8 @@ export default function MediaCards({
           >
             <img
               src={
-                mediaBookmarked
-                  ? '/assets/icon-bookmark-full.svg'
-                  : '/assets/icon-bookmark-empty-new.svg'
+                isBookmarked? 
+                '/assets/icon-bookmark-full.svg': '/assets/icon-bookmark-empty-new.svg'
               }
               alt=""
               className={`w-2 m-auto md:w-3 ${bookmarkIconHover}`}

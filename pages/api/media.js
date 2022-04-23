@@ -56,14 +56,21 @@ async function updateMedia(req, res){
 
             [
                 { $set: { isBookmarked: { $not: "$isBookmarked" } } }
-            ]
+            ], 
 
-        );
+            {returnDocument:"after",
+            returnOriginal: false},
 
-        return res.json({
-            message: "Bookmark State Changed!",
-            success: true
-        });
+        ).then(updatedDocument => {
+            return res.json({
+                message: "Bookmark State Changed!",
+                success: true,
+                doc: updatedDocument
+        }) 
+    })
+    
+
+        
 
     } catch (error){
         return res.json({
