@@ -49,16 +49,14 @@ async function updateMedia(req, res){
         let {db} = await connectToDatabase();
 
         //update the bookmark status
-        await db.collection('media').updateOne(
+        await db.collection('media').findOneAndUpdate(
             {
                 _id: new ObjectId(req.body)
             },
 
-            { 
-                $bit: { 
-                    isBookmarked: { xor: NumberInt(1) } 
-                } 
-            }
+            [
+                { $set: { isBookmarked: { $not: "$isBookmarked" } } }
+            ]
 
         );
 
