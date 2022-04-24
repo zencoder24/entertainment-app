@@ -5,20 +5,25 @@ import MediaContainer from '../../components/MediaContainer';
 import MediaCards from '../../components/MediaCards';
 import mediaItems from '../../public/data.json';
 
-export async function getServerSideProps(context){
+export async function getServerSideProps(context) {
   // get the current environment
   let dev = process.env.NODE_ENV !== 'production';
   // let { DEV_URL, PROD_URL } = process.env;
 
   // request posts from api
-  let response = await fetch(`${dev ?'http://localhost:3000' : 'https://your_deployment.server.com'}/api/media`);
+  // let response = await fetch(
+  //   `${
+  //     dev ? 'http://localhost:3000' : 'https://your_deployment.server.com'
+  //   }/api/media`
+  // );
+  let response = await fetch('http://localhost:3000/api/media');
   // extract the data
   let data = await response.json();
 
   return {
-      props: {
-          media: data['message'],
-      },
+    props: {
+      media: data['message'],
+    },
   };
 }
 
@@ -34,7 +39,11 @@ const MoviesPage = ({media}) => {
 
       <MediaContainer searchVal={searchVal} title={'Movies'}>
         {media
-          .filter((item) => item.category === 'Movie'&& item.title.toLowerCase().includes(searchVal.toLowerCase()))
+          .filter(
+            (item) =>
+              item.category === 'Movie' &&
+              item.title.toLowerCase().includes(searchVal.toLowerCase())
+          )
           .map((item) => (
             <MediaCards
               key={item._id}

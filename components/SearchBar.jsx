@@ -1,9 +1,7 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import SearchIcon from '../public/assets/icon-search.svg';
 
 const SearchBar = ({placholderText, onChange, setSearchVal, searchVal}) => {
-    
-
   return (
     <div>
       <label className="relative block">
@@ -17,11 +15,11 @@ const SearchBar = ({placholderText, onChange, setSearchVal, searchVal}) => {
       </label>
       <h1
         className={`${
-          searchVal.length == 0 ? 'hidden' : 'block'
+          (searchVal || []).length == 0 ? 'hidden' : 'block'
         } text-xl mt-2 ml-4 md:text-3xl`}
       >
         {' '}
-        Found Results for: '{searchVal}'
+        Found Results for: `{searchVal}`
       </h1>
     </div>
   );

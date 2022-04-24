@@ -12,11 +12,12 @@ export async function getServerSideProps(context) {
   // let { DEV_URL, PROD_URL } = process.env;
 
   // request posts from api
-  let response = await fetch(
-    `${
-      dev ? 'http://localhost:3000' : 'https://your_deployment.server.com'
-    }/api/media`
-  );
+  // let response = await fetch(
+  //   `${
+  //     dev ? 'http://localhost:3000' : 'https://your_deployment.server.com'
+  //   }/api/media`
+  // );
+  let response = await fetch('http://localhost:3000/api/media');
   // extract the data
   let data = await response.json();
 
@@ -60,7 +61,11 @@ export default function Home({media}) {
       {/** Trending Component */}
       <MediaContainer searchVal={searchVal} title={'Recommended for you'}>
         {media
-          .filter((item) => searchVal? item.title.toLowerCase().includes(searchVal.toLowerCase()) : item.isTrending === false)
+          .filter((item) =>
+            searchVal
+              ? item.title.toLowerCase().includes(searchVal.toLowerCase())
+              : item.isTrending === false
+          )
           .map((item) => (
             <MediaCards
               key={item._id}
