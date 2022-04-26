@@ -7,11 +7,10 @@ import mediaItems from '../../public/data.json';
 
 export async function getServerSideProps(context){
   // get the current environment
-  let dev = process.env.NODE_ENV !== 'production';
-  // let { DEV_URL, PROD_URL } = process.env;
+  const server = process.env.SERVER
 
   // request posts from api
-  let response = await fetch(`${dev ?'http://localhost:3000' : 'https://your_deployment.server.com'}/api/media`);
+  let response = await fetch(`${server}/api/media`);
   // extract the data
   let data = await response.json();
 

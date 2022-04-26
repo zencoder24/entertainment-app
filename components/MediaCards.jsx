@@ -1,5 +1,4 @@
 import React, {useEffect, useState} from 'react';
-import { server } from '../config';
 import {useRouter} from 'next/router'
 
 export default function MediaCards({
@@ -21,6 +20,8 @@ export default function MediaCards({
   const [playHover, setPlayHover] = useState(false);
   const [imgHover, setImgHover] = useState('');
   const router = useRouter();
+
+  const server = process.env.SERVER
 
   const bookmarkToggle = async (id) =>{
     try{

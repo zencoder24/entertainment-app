@@ -13,4 +13,7 @@ module.exports = {
     });
     return config;
   },
+  env: {
+    SERVER: process.env.SERVER
+  }
 };
