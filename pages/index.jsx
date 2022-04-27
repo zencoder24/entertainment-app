@@ -5,7 +5,7 @@ import MediaContainer from '../components/MediaContainer';
 import TrendingCards from '../components/TrendingCards';
 import TrendingContainer from '../components/TrendingContainer';
 import {useState} from 'react';
-import server from '../../config/server'
+import server from '../config/server';
 
 export async function getServerSideProps(context) {
  

@@ -10,6 +10,7 @@ export async function getServerSideProps(context){
  
   
   let response = await fetch(`${server}/api/media`);
+  console.log(response)
   // extract the data
   let data = await response.json();
 
