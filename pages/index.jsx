@@ -9,8 +9,6 @@ import server from '../config/server';
 
 export async function getServerSideProps(context) {
  
-
-
   let response = await fetch(`${server}/api/media`);
   // extract the data
   let data = await response.json();
