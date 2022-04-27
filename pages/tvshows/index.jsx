@@ -8,7 +8,7 @@ import MediaCards from '../../components/MediaCards'
 export async function getServerSideProps(context){
   const dev = process.env.NODE_ENV !== 'production';
 
-  const server = dev ? 'http://localhost:3000' :  process.env.NEXT_PUBLIC_VERCEL_URL; 
+  const server = dev ? 'http://localhost:3000' : 'https://entertainment-app-xi.vercel.app'; 
   
   let response = await fetch(`${server}/api/media`);
   // extract the data
