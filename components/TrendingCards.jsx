@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 
 import {useRouter} from 'next/router';
+import server from '../config/server';
 
 const TrendingCards = ({
   year,
@@ -19,7 +20,7 @@ const TrendingCards = ({
   const [imgHover, setImgHover] = useState('');
   const router = useRouter();
 
-  const server = process.env.SERVER
+ 
 
   const bookmarkToggle = async (id) => {
     try {

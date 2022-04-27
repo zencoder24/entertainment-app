@@ -4,13 +4,12 @@ import SearchBar from '../../components/SearchBar';
 import mediaItems from '../../public/data.json';
 import MediaContainer from '../../components/MediaContainer';
 import MediaCards from '../../components/MediaCards'
+import server from '../../config/server'
 
 
 
 export async function getServerSideProps(context){
-  const dev = process.env.NODE_ENV !== 'production';
-
-  const server = dev ? 'http://localhost:3000' : 'https://entertainment-app-xi.vercel.app'; 
+  
 
 
   let response = await fetch(`${server}/api/media`);
