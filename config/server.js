@@ -1,5 +1,5 @@
 const dev = process.env.NODE_ENV !== 'production';
 
-  const server = dev ? process.env.LOCAL_SERVER : process.env.PRODUCTION_URL; 
+  const server = dev ? "http://localhost:3000" : "https://entertainment-app-xi.vercel.app"; 
 
   export default server;
