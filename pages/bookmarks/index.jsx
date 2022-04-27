@@ -4,7 +4,7 @@ import SearchBar from '../../components/SearchBar';
 import mediaItems from '../../public/data.json';
 import MediaContainer from '../../components/MediaContainer';
 import MediaCards from '../../components/MediaCards'
-import useSWR from 'swr'
+
 
 
 export async function getServerSideProps(context){
