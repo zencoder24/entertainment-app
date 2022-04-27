@@ -6,9 +6,10 @@ import MediaContainer from '../../components/MediaContainer';
 import MediaCards from '../../components/MediaCards'
 
 export async function getServerSideProps(context){
-  const server = process.env.SERVER
+  const dev = process.env.NODE_ENV !== 'production';
 
-  // request posts from api
+  const server = dev ? 'http://localhost:3000' : NEXT_PUBLIC_VERCEL_URL; 
+  
   let response = await fetch(`${server}/api/media`);
   // extract the data
   let data = await response.json();

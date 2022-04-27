@@ -7,13 +7,11 @@ import TrendingContainer from '../components/TrendingContainer';
 import {useState} from 'react';
 
 export async function getServerSideProps(context) {
-  // get the current environment
-  let dev = process.env.NODE_ENV !== 'production';
-  // let { DEV_URL, PROD_URL } = process.env;
+  const dev = process.env.NODE_ENV !== 'production';
 
-  const server = process.env.SERVER
+  const server = dev ? 'http://localhost:3000' : NEXT_PUBLIC_VERCEL_URL; 
 
-  // request posts from api
+
   let response = await fetch(`${server}/api/media`);
   // extract the data
   let data = await response.json();
